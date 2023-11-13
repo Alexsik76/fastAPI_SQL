@@ -1,11 +1,14 @@
 from typing import Annotated
 
 from fastapi import FastAPI, Body
+from fastapi.encoders import jsonable_encoder
+
 from database import make_query
 app = FastAPI()
 
 
 @app.post("/api")
-async def root(sql_query: Annotated[str, Body()]):
-    res = make_query(sql_query)
-    return {"res": res}
+async def root(body: str = Body(..., media_type='text/plain')):
+    # print(body)
+    res = make_query(body)
+    return {"result": res}

@@ -15,7 +15,7 @@ def make_query(sql_query):
     connection = pymysql.connect(**db_credentials,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
-    print('query: ', sql_query)
+    # print('query: ', sql_query)
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(sql_query)
