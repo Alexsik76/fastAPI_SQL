@@ -29,6 +29,6 @@ async def root(body: str = Body(media_type='text/plain')):
 async def get_schema():
     tables = make_query(queries.TABLES)
     for table in tables:
-        columns = make_query(queries.COLUMNS % table['table_name'])
+        columns = make_query(queries.COLUMNS % table['TABLE_NAME'])
         table['columns'] = columns
     return tables
