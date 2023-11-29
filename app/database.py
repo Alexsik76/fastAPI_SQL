@@ -1,12 +1,10 @@
 import pymysql.cursors
 from pymysql import ProgrammingError
 
-db_credentials = {
-    'host': '192.168.88.71',
-    'user': 'sql_user',
-    'password': 'password',
-    'database': 'carshop'
-}
+from .config import settings
+
+db_credentials = dict(host=settings.db_host, user=settings.db_user, password=settings.db_password,
+                      database=settings.db_name)
 
 
 def make_query(sql_query):
@@ -20,5 +18,4 @@ def make_query(sql_query):
                 result = cursor.fetchall()
                 return result
             except ProgrammingError as error:
-                print(error.args)
                 return {'error': error.args[1]}
