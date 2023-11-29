@@ -6,3 +6,7 @@ services:
     build: .
     ports:
       - "8000:8000"
+    networks:
+      - 'api_db_default'
+networks:
+  api_db_default:
