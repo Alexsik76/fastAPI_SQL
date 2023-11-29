@@ -1,0 +1,7 @@
+services:
+  api:
+    env_file:
+      .env
+    build: https://github.com/Alexsik76/fastAPI_SQL.git#dev
+    ports:
+      - "8000:8000"
