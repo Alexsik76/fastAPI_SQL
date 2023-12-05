@@ -29,4 +29,6 @@ async def get_schema(response: Response):
         columns = make_query(COLUMNS % table['TABLE_NAME'])
         table['columns'] = columns
     response.headers['Cache-Control'] = 'no-cache'
+    response.headers['Content-Type'] = 'text/javascript; charset=utf-8'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
     return {'tables': tables}
