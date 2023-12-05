@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - 'db-network'
+      - 'db_network'
 networks:
-  db-network:
+  db_network:
     external: true
