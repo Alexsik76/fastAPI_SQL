@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, Body, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
@@ -23,9 +23,11 @@ async def root(body: str = Body(media_type='text/plain')):
 
 
 @app.get("/api/schema")
-async def get_schema():
+async def get_schema(response: Response):
     tables = make_query(TABLES)
     for table in tables:
         columns = make_query(COLUMNS % table['TABLE_NAME'])
         table['columns'] = columns
-    return tables
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Cache-Control'] = 'no-cache'
+    return {'tables': tables}
