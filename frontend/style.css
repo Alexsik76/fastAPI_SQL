@@ -1,0 +1,19 @@
+.wrapper, form, table, button {
+    padding: 1em;
+    margin: 1em;
+}
+.wrapper, form{
+    display: flex;
+}
+
+form {
+    flex-direction: column;
+}
+td {
+    padding: 0.4em;
+    border: 1px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
