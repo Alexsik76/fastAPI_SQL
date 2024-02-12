@@ -1,5 +1,6 @@
 import pymysql.cursors
-from pymysql import ProgrammingError, OperationalError
+from pymysql import (Error,InterfaceError, DataError, DatabaseError, OperationalError, IntegrityError, InternalError,
+                     NotSupportedError, ProgrammingError, MySQLError)
 
 from .config import settings
 
@@ -33,5 +34,6 @@ def make_insert(sql_query):
                 cursor.execute(sql_query)
                 connection.commit()
                 return {"result": "Ok"}
-            except (ProgrammingError, OperationalError) as error:
+            except (Error,InterfaceError, DataError, DatabaseError, OperationalError, IntegrityError, InternalError,
+                    NotSupportedError, ProgrammingError, MySQLError) as error:
                 return {"error": error.args[1]}
