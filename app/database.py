@@ -31,9 +31,9 @@ def make_insert(sql_query):
     with connection:
         with connection.cursor() as cursor:
             try:
-                cursor.execute(sql_query)
+                res = cursor.execute(sql_query)
                 connection.commit()
-                return {"result": "Ok"}
+                return {"result": "Operation performed" if res else "Operation not performed"}
             except (Error,InterfaceError, DataError, DatabaseError, OperationalError, IntegrityError, InternalError,
                     NotSupportedError, ProgrammingError, MySQLError) as error:
                 return {"error": error.args[1]}
